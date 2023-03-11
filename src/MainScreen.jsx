@@ -46,7 +46,7 @@ export default function MainScreen() {
       description: `So story is not funny`,
       status: 'infor',
     });
-  };
+  };4
 
   //vote funny button
   const onPressVoteFunny = () => {
@@ -63,75 +63,103 @@ export default function MainScreen() {
   return (
     <Box w={'full'} h={'full'} bg="white" safeArea>
       {/* Header */}
-      <HStack px={16} py={4} justifyContent={'space-between'}>
+      <HStack px={16} justifyContent={'space-between'}>
         <Image resizeMode="contain" alt="" h="70" w="70" source={images.logo} />
         <HStack alignItems={'center'}>
           <VStack mr={4}>
-            <Text color={'dark.400'} fontSize={14}>
+            <Text color={'dark.400'} fontSize={12}>
               Handicrafted by
             </Text>
             <Text
               fontWeight={400}
               textAlign="right"
               color={'dark.100'}
-              fontSize={16}>
+              fontSize={13}>
               Jim HLS
             </Text>
           </VStack>
-          <Box
-            alignItems={'center'}
-            justifyContent="center"
-            borderWidth={1}
-            w={50}
-            h={50}
-            borderRadius={100}>
-            <Image resizeMode="contain" w={25} h={26} source={images.account} />
-          </Box>
+
+          <Image
+            size={45}
+            borderRadius={100}
+            source={{
+              uri: 'https://wallpaperaccess.com/full/317501.jpg',
+            }}
+            alt="Alternate Text"
+          />
         </HStack>
       </HStack>
       {/* Body */}
       <ScrollView>
         {/* Title */}
-        <Box px={16} py={24} bg={'green.500'}>
-          <Text textAlign={'center'} color={'white'} fontSize={25}>
-            {joke.title}
+        <Box px={30} py={48} bg={'green.500'}>
+          <Text
+            fontWeight={400}
+            letterSpacing={'sm'}
+            lineHeight="sm"
+            textAlign={'center'}
+            color={'white'}
+            fontSize={22}>
+            A joke a day keeps the doctor away
+          </Text>
+          <Text
+            letterSpacing={'sm'}
+            lineHeight="sm"
+            fontWeight={500}
+            mt={20}
+            color={'white'}
+            fontSize={13.5}>
+            If you joke worong way, your theeth have to pay.(Serious)
           </Text>
         </Box>
         {/* content */}
-        <VStack px={16} py={44} justifyContent={'space-around'}>
+        <VStack px={21} py={44} justifyContent={'space-around'}>
           <Text
             textAlign={'justify'}
-            fontWeight={400}
+            letterSpacing={'sm'}
+            lineHeight="sm"
+            fontWeight={500}
             color={'dark.400'}
             fontSize={16}>
             {joke.content}
           </Text>
-          <HStack mt={40} justifyContent={'space-around'}>
+          <HStack mt={80} justifyContent={'space-around'}>
+            <Box />
             <CustomPressable
               onPress={() => {
                 onPressVoteFunny();
               }}>
-              <Box bg="blue.400" p={8}>
-                This is Funny!
+              <Box alignItems={'center'} w={120} bg="blue.500" p={6}>
+                <Text fontWeight={500} fontSize={14}>
+                  This is Funny!{' '}
+                </Text>
               </Box>
             </CustomPressable>
             <CustomPressable
               onPress={() => {
                 onPressVoteNotFunny();
               }}>
-              <Box bg="green.500" p={8}>
-                This is not Funny!
+              <Box alignItems={'center'} w={120} bg="green.500" p={6}>
+                <Text fontWeight={500} fontSize={14}>
+                  This is not Funny{' '}
+                </Text>
               </Box>
             </CustomPressable>
+            <Box />
           </HStack>
         </VStack>
       </ScrollView>
 
       {/* Footer */}
       <Box w={'full'} h={1} bg={'dark.600'} />
-      <Box px={16} py={8}>
+      <Box px={10} py={8}>
         <VStack alignItems={'center'}>
-          <Text textAlign={'center'} color={'dark.500'} fontSize={14}>
+          <Text
+            letterSpacing={'sm'}
+            textAlign={'center'}
+            color={'dark.500'}
+            fontWeight={600}
+            fontSize={12.5}>
             This appis craeted as part of Hlsolutions pogram. The materials
             con-tained on this website are provided for greneral information
             only and do not constitute any from advice.HLS assumes no
@@ -139,7 +167,7 @@ export default function MainScreen() {
             accepts no liability for any loss or damage which may arise from
             reliance on the information contained on this site.
           </Text>
-          <Text mt={10} color={'dark.100'} fontWeight={400} fontSize={18}>
+          <Text mt={10} color={'dark.400'} fontWeight={400} fontSize={16}>
             Copyright 2021 HLS
           </Text>
         </VStack>
