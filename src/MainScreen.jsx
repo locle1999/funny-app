@@ -15,49 +15,56 @@ import {CustomPressable} from './components/CustomPressable';
 import {VARIANT_TOAST} from './components/SToastAlert';
 import {useMask} from './service/MaskContex';
 
+var index = 0;
 export default function MainScreen() {
   const {showToastAlert} = useMask();
   const [joke, setJoke] = useState(contents[0]);
   const emptyArray = [];
 
-  // check element
-  function in_array(array, el) {
-    for (var i = 0; i < array.length; i++) if (array[i] == el) return true;
-    return false;
-  }
-
-  // random content
-  function get_rand(array) {
-    var rand = array[Math.floor(Math.random() * array.length)];
-    if (!in_array(emptyArray, rand)) {
-      emptyArray.push(rand);
-      return rand;
-    }
-    return get_rand(array);
-  }
-
   // vote not funny button
   const onPressVoteNotFunny = () => {
-    setJoke(get_rand(contents));
-    showToastAlert({
-      placement: 'top',
-      title: 'Sorry',
-      variant: VARIANT_TOAST.LEFT_ACCENT,
-      description: `So story is not funny`,
-      status: 'infor',
-    });
-  };4
+    if (index < contents.length) {
+      showToastAlert({
+        placement: 'top',
+        title: 'Sorry',
+        variant: VARIANT_TOAST.LEFT_ACCENT,
+        description: `So story is not funny`,
+        status: 'infor',
+      });
+      setJoke(contents[index++]);
+    } else {
+      showToastAlert({
+        placement: 'top',
+        title: 'Sorry',
+        variant: VARIANT_TOAST.LEFT_ACCENT,
+        description: "That's all the jokes for today! Come back another day!",
+        status: 'infor',
+      });
+      setJoke(contents[contents.length - 1]);
+    }
+  };
 
   //vote funny button
   const onPressVoteFunny = () => {
-    setJoke(get_rand(contents));
-    showToastAlert({
-      placement: 'top',
-      title: 'Thanks you',
-      variant: VARIANT_TOAST.LEFT_ACCENT,
-      description: `Thank you for vote funny`,
-      status: 'success',
-    });
+    if (index < contents.length) {
+      showToastAlert({
+        placement: 'top',
+        title: 'Thank you',
+        variant: VARIANT_TOAST.LEFT_ACCENT,
+        description: `Thank you for vote`,
+        status: 'success',
+      });
+      setJoke(contents[index++]);
+    } else {
+      showToastAlert({
+        placement: 'top',
+        title: 'Sorry',
+        variant: VARIANT_TOAST.LEFT_ACCENT,
+        description: "That's all the jokes for today! Come back another day!",
+        status: 'infor',
+      });
+      setJoke(contents[contents.length - 1]);
+    }
   };
 
   return (
